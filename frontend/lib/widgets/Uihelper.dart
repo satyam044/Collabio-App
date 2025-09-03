@@ -33,7 +33,7 @@ class Uihelper {
     );
   }
 
-  static ThemeData theme (BuildContext context) {
+  static ThemeData theme(BuildContext context) {
     return Provider.of<ThemeProvider>(context).themeData;
   }
 }
