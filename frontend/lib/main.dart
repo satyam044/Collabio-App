@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/auth.dart';
 import 'package:frontend/pages/splash.dart';
 import 'package:frontend/themes/theme_provider.dart';
 import 'package:frontend/widgets/Uihelper.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Uihelper.theme(context),
-      home: SplashPage(),
+      home: AuthPage(),
     );
   }
 }

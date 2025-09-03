@@ -1,18 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/themes/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:frontend/pages/home.dart';
+import 'package:frontend/widgets/Uihelper.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        (context),
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(onPressed: () {
-          Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
-        }, child: Text('Change')),
-      ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Uihelper.customImg(img: 'logo.png', height: 120),
+          Uihelper.customTxt(text: 'Collabio', fontSize: 32, fontWeight: FontWeight.bold)
+        ],
+      )),
     );
   }
 }
