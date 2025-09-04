@@ -5,8 +5,8 @@ import 'package:frontend/widgets/Uihelper.dart';
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
-  void _onEmailSignUpPressed() {
-    
+  void _onEmailSignUpPressed() async {
+
   }
 
   void _onGoogleSignUpPressed() {
@@ -64,7 +64,7 @@ class AuthPage extends StatelessWidget {
                 children: [
                   customAuthBtn.emailBtn(onPressed: _onEmailSignUpPressed),
                   SizedBox(height: 15),
-                  customAuthBtn.googleBtn(onPressed: _onEmailSignUpPressed),
+                  customAuthBtn.googleBtn(onPressed: _onGoogleSignUpPressed),
                   SizedBox(height: 15),
                   customAuthBtn.phoneBtn(onPressed: _onPhoneSignUpPressed),
                 ],

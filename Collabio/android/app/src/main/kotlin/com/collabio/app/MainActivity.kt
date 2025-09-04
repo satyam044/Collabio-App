@@ -1,4 +1,4 @@
-package com.example.frontend
+package com.collabio.app
 
 import io.flutter.embedding.android.FlutterActivity
 
