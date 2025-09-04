@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:frontend/api/google_signin_api.dart';
 import 'package:frontend/pages/home.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
-  void _onPhoneSignUpPressed() async {}
+  static _onPhoneSignUpPressed(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => HomePage()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,41 +55,54 @@ class AuthPage extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _onPhoneSignUpPressed,
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () => _onPhoneSignUpPressed(context),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      backgroundColor: Colors.green,
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      elevation: 5,
                     ),
-                    backgroundColor: Colors.green,
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    elevation: 5,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.phone,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        SizedBox(width: 10),
+                        Uihelper.customTxt(
+                          text: 'Sign Up with Phone',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.phone,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      SizedBox(width: 10),
-                      Uihelper.customTxt(
-                        text: 'Sign Up with Phone',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                      ),
-                    ],
+                  SizedBox(height: 40),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              Scaffold(body: Center(child: Text("Home Page"))),
+                        ),
+                      );
+                    },
+                    child: Uihelper.customTxt(
+                      text: 'Already have an account? Log In',
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
                   ),
-                ),
-              ),
-              Uihelper.customTxt(
-                text: 'Already have an account? Log In',
-                fontSize: 16,
-                color: Colors.blue,
+                ],
               ),
             ],
           ),
