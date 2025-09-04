@@ -5,8 +5,7 @@ import 'package:frontend/themes/theme_provider.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(
+Future<void> main() async {runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
       child: const MyApp(),

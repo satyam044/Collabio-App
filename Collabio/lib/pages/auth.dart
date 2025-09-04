@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/api/google_signin_api.dart';
+import 'package:frontend/pages/home.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
-  void _onEmailSignUpPressed() async {
+  void _onEmailSignUpPressed() async {}
 
+  void _onGoogleSignUpPressed(BuildContext context) async {
+    final user = await GoogleSigninApi.login();
+
+    if (user == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Failed to Sign In')));
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    }
   }
 
-  void _onGoogleSignUpPressed() {
-    
-  }
-
-  void _onPhoneSignUpPressed() {
-    
-  }
+  void _onPhoneSignUpPressed() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +73,9 @@ class AuthPage extends StatelessWidget {
                 children: [
                   customAuthBtn.emailBtn(onPressed: _onEmailSignUpPressed),
                   SizedBox(height: 15),
-                  customAuthBtn.googleBtn(onPressed: _onGoogleSignUpPressed),
+                  customAuthBtn.googleBtn(
+                    onPressed: () => _onGoogleSignUpPressed(context),
+                  ),
                   SizedBox(height: 15),
                   customAuthBtn.phoneBtn(onPressed: _onPhoneSignUpPressed),
                 ],
