@@ -7,23 +7,6 @@ import 'package:frontend/widgets/Uihelper.dart';
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
-  void _onEmailSignUpPressed() async {}
-
-  void _onGoogleSignUpPressed(BuildContext context) async {
-    final user = await GoogleSigninApi.login();
-
-    if (user == null) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Failed to Sign In')));
-    } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
-    }
-  }
-
   void _onPhoneSignUpPressed() async {}
 
   @override
@@ -68,17 +51,36 @@ class AuthPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 100),
-              Column(
-                children: [
-                  customAuthBtn.emailBtn(onPressed: _onEmailSignUpPressed),
-                  SizedBox(height: 15),
-                  customAuthBtn.googleBtn(
-                    onPressed: () => _onGoogleSignUpPressed(context),
+              Container(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _onPhoneSignUpPressed,
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    backgroundColor: Colors.green,
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    elevation: 5,
                   ),
-                  SizedBox(height: 15),
-                  customAuthBtn.phoneBtn(onPressed: _onPhoneSignUpPressed),
-                ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.phone,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                      SizedBox(width: 10),
+                      Uihelper.customTxt(
+                        text: 'Sign Up with Phone',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Uihelper.customTxt(
                 text: 'Already have an account? Log In',
@@ -87,70 +89,6 @@ class AuthPage extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class customAuthBtn {
-  static Widget emailBtn({required VoidCallback onPressed}) {
-    return _buildAuthBtn(
-      icon: FontAwesomeIcons.envelope,
-      text: 'Sign Up with Email',
-      backgroundColor: Colors.red,
-      onPressed: onPressed,
-    );
-  }
-
-  static Widget googleBtn({required VoidCallback onPressed}) {
-    return _buildAuthBtn(
-      icon: FontAwesomeIcons.google,
-      text: 'Sign Up with Google',
-      backgroundColor: const Color.fromARGB(255, 9, 128, 225),
-      onPressed: onPressed,
-    );
-  }
-
-  static Widget phoneBtn({required VoidCallback onPressed}) {
-    return _buildAuthBtn(
-      icon: FontAwesomeIcons.phone,
-      text: 'Sign Up with Phone',
-      backgroundColor: Colors.green,
-      onPressed: onPressed,
-    );
-  }
-
-  static Widget _buildAuthBtn({
-    required IconData icon,
-    required String text,
-    required Color backgroundColor,
-    required VoidCallback onPressed,
-  }) {
-    return Container(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          backgroundColor: backgroundColor,
-          padding: EdgeInsets.symmetric(vertical: 16),
-          elevation: 5,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FaIcon(icon, color: Colors.white, size: 30),
-            SizedBox(width: 10),
-            Uihelper.customTxt(
-              text: text,
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-            ),
-          ],
         ),
       ),
     );
