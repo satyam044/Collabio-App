@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:frontend/pages/add_friends.dart';
+import 'package:frontend/pages/profile.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class HomePage extends StatelessWidget {
@@ -32,11 +32,11 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AddFriendsPage()),
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
                 );
               },
               icon: FaIcon(
-                FontAwesomeIcons.userPlus,
+                FontAwesomeIcons.user,
                 size: 22,
                 color: Colors.white,
               ),
@@ -92,17 +92,16 @@ class HomePage extends StatelessWidget {
                                     ),
                                   ],
                                   gradient: LinearGradient(
-                                    colors: [
-                                      Colors.amber,
-                                      Colors.orangeAccent,
-                                    ],
+                                    colors: [Colors.amber, Colors.orangeAccent],
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Uihelper.customImg(
-                                    img: 'logo.png',
-                                    height: 44,
+                                child: CircleAvatar(
+                                  radius: 34,
+                                  backgroundColor: Color(0xFF2C5364),
+                                  child: FaIcon(
+                                    FontAwesomeIcons.user,
+                                    color: Colors.white,
+                                    size: 24,
                                   ),
                                 ),
                               ),
@@ -153,23 +152,27 @@ class HomePage extends StatelessWidget {
                         itemCount: 20,
                         separatorBuilder: (_, __) => SizedBox(height: 0),
                         itemBuilder: (context, index) {
-                          return Card(color: Colors.white,
+                          return Card(
+                            color: Colors.white,
                             elevation: 1,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0),
                             ),
                             child: ListTile(
                               leading: CircleAvatar(
-                                radius: 26,
-                                backgroundImage: AssetImage(
-                                  'assets/images/logo.png',
+                                radius: 24,
+                                backgroundColor: Color(0xFF2C5364),
+                                child: FaIcon(
+                                  FontAwesomeIcons.user,
+                                  color: Colors.white,
+                                  size: 24,
                                 ),
                               ),
                               title: Uihelper.customTxt(
                                 text: "User $index",
                                 fontSize: 17,
                                 fontWeight: FontWeight.w700,
-                                color: Colors.black
+                                color: Colors.black,
                               ),
                               subtitle: Uihelper.customTxt(
                                 text: "Last Message...",

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/pages/add_friends.dart';
 import 'package:frontend/pages/calls.dart';
-import 'package:frontend/pages/explore.dart';
 import 'package:frontend/pages/home.dart';
-import 'package:frontend/pages/profile.dart';
+import 'package:frontend/pages/nottifications.dart';
 
 class BottomNavbarWidget extends StatefulWidget {
   const BottomNavbarWidget({super.key});
@@ -14,7 +14,7 @@ class BottomNavbarWidget extends StatefulWidget {
 
 class _BottomNavbarWidgetState extends State<BottomNavbarWidget> {
   int currentIndex = 0;
-  List<Widget> pages = [HomePage(), ExplorePage(), CallsPage(), ProfilePage()];
+  List<Widget> pages = [HomePage(), AddFriendsPage(), NottificationsPage(), CallsPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,16 +32,16 @@ class _BottomNavbarWidgetState extends State<BottomNavbarWidget> {
                 label: "Home",
               ),
               BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.compass, size: 28),
-                label: "Explore",
+                icon: FaIcon(FontAwesomeIcons.search, size: 28),
+                label: "Search",
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.bell, size: 28),
+                label: "Nottifications",
               ),
               BottomNavigationBarItem(
                 icon: FaIcon(FontAwesomeIcons.phoneVolume, size: 28),
                 label: "Calls",
-              ),
-              BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.circleUser, size: 28),
-                label: "Profile",
               ),
             ],
             type: BottomNavigationBarType.fixed,

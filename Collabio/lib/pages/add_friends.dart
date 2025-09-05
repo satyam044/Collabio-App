@@ -11,21 +11,18 @@ class AddFriendsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: FaIcon(
-            FontAwesomeIcons.arrowLeft,
-            size: 22,
-            color: Colors.white,
-          ),
+        title: Row(
+          children: [
+            Uihelper.customImg(img: 'logo.png', height: 36),
+            SizedBox(width: 8),
+            Uihelper.customTxt(
+              text: 'Collabio',
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ],
         ),
-        title: Text(
-          'Add Friends',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -76,7 +73,7 @@ class AddFriendsPage extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsetsGeometry.all(8),
-              child: Uihelper.customTxt(text: "Find Friends", fontSize: 22),
+              child: Uihelper.customTxt(text: "Add Friends", fontSize: 22),
             ),
             Expanded(
               child: ListView.separated(
