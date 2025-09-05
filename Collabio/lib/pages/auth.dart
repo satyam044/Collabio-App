@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/pages/home.dart';
 import 'package:frontend/widgets/Uihelper.dart';
+import 'package:frontend/widgets/bottom_navbar_widget.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -9,7 +10,7 @@ class AuthPage extends StatelessWidget {
   static _onPhoneSignUpPressed(BuildContext context) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => HomePage()),
+      MaterialPageRoute(builder: (context) => BottomNavbarWidget()),
     );
   }
 
@@ -24,7 +25,7 @@ class AuthPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => BottomNavbarWidget()),
                 );
               },
               icon: Row(

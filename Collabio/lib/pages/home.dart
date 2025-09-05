@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/pages/add_friends.dart';
 import 'package:frontend/widgets/Uihelper.dart';
+import 'package:frontend/widgets/bottom_navbar_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,13 +11,30 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        leading: Center(child: FaIcon(FontAwesomeIcons.userPlus, size: 24,)),
-        title: Uihelper.customTxt(text: 'Home', fontSize: 20),
+        title: Row(
+          children: [
+            Uihelper.customImg(img: 'logo.png', height: 30),
+            SizedBox(width: 8),
+            Uihelper.customTxt(
+              text: 'Collabio',
+              fontSize: 20,
+              fontWeight: FontWeight.normal,
+              color: Colors.white,
+            ),
+          ],
+        ),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: FaIcon(FontAwesomeIcons.bell, size: 24),
+            padding: const EdgeInsets.all(14.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AddFriendsPage()),
+                );
+              },
+              icon: FaIcon(FontAwesomeIcons.userPlus, size: 20),
+            ),
           ),
         ],
       ),
@@ -95,7 +114,9 @@ class HomePage extends StatelessWidget {
                         return ListTile(
                           leading: CircleAvatar(
                             radius: 24,
-                            backgroundImage: AssetImage('assets/images/logo.png')
+                            backgroundImage: AssetImage(
+                              'assets/images/logo.png',
+                            ),
                           ),
                           title: Uihelper.customTxt(
                             text: "User $index",
