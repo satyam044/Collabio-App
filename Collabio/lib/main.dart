@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Uihelper.theme(context),
-      home: AuthPage(),
+      home: SplashPage(),
     );
   }
 }

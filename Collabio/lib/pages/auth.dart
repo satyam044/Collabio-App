@@ -32,12 +32,12 @@ class AuthPage extends StatelessWidget {
                 children: [
                   Uihelper.customTxt(
                     text: 'Skip',
-                    fontSize: 18,
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                   ),
-                  SizedBox(width: 10),
-                  FaIcon(FontAwesomeIcons.arrowRight, color: Colors.grey),
+                  SizedBox(width: 8),
+                  FaIcon(FontAwesomeIcons.arrowRight, color: Colors.grey, size: 14,),
                 ],
               ),
             ),
@@ -45,7 +45,7 @@ class AuthPage extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 60),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 60),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -103,7 +103,7 @@ class AuthPage extends StatelessWidget {
                   SizedBox(width: 10),
                   Uihelper.customTxt(
                     text: 'Sign Up with Phone',
-                    fontSize: 18,
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Colors.white,
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/auth.dart';
 import 'package:frontend/pages/home.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
@@ -16,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         (context),
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => AuthPage()),
       );
     });
   }
