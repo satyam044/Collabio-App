@@ -15,11 +15,11 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         title: Row(
           children: [
-            Uihelper.customImg(img: 'logo.png', height: 30),
+            Uihelper.customImg(img: 'logo.png', height: 36),
             SizedBox(width: 8),
             Uihelper.customTxt(
               text: 'Collabio',
-              fontSize: 22,
+              fontSize: 26,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(14.0),
+            padding: const EdgeInsets.all(10.0),
             child: IconButton(
               onPressed: () {
                 Navigator.push(
@@ -149,14 +149,14 @@ class HomePage extends StatelessWidget {
                     ),
                     Expanded(
                       child: ListView.separated(
-                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        padding: EdgeInsets.symmetric(horizontal: 0),
                         itemCount: 20,
-                        separatorBuilder: (_, __) => SizedBox(height: 8),
+                        separatorBuilder: (_, __) => SizedBox(height: 0),
                         itemBuilder: (context, index) {
-                          return Card(color: Colors.white54,
-                            elevation: 2,
+                          return Card(color: Colors.white,
+                            elevation: 1,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(0),
                             ),
                             child: ListTile(
                               leading: CircleAvatar(
