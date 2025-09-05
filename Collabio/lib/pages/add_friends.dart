@@ -16,7 +16,7 @@ class AddFriendsPage extends StatelessWidget {
             Uihelper.customImg(img: 'logo.png', height: 36),
             SizedBox(width: 8),
             Uihelper.customTxt(
-              text: 'Collabio',
+              text: 'Search',
               fontSize: 26,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -76,74 +76,80 @@ class AddFriendsPage extends StatelessWidget {
               child: Uihelper.customTxt(text: "Add Friends", fontSize: 22),
             ),
             Expanded(
-              child: ListView.separated(
-                itemCount: 15,
-                separatorBuilder: (_, __) => SizedBox(height: 0),
-                itemBuilder: (context, index) {
-                  return Card(
-                    color: Colors.white,
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 16,
-                        horizontal: 18,
-                      ),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 24,
-                            backgroundColor: Color(0xFF2C5364),
-                            child: FaIcon(
-                              FontAwesomeIcons.user,
-                              color: Colors.white,
-                              size: 24,
-                            ),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.white),
+                child: Expanded(
+                  child: ListView.separated(
+                    padding: EdgeInsets.symmetric(horizontal: 0),
+                    itemCount: 20,
+                    separatorBuilder: (_, __) => SizedBox(height: 0),
+                    itemBuilder: (context, index) {
+                      return Card(
+                        color: Colors.white,
+                        elevation: 1,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 18,
                           ),
-                          SizedBox(width: 18),
-                          Expanded(
-                            child: Text(
-                              'User ${index + 1}',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF2C5364),
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 24,
+                                backgroundColor: Color(0xFF2C5364),
+                                child: FaIcon(
+                                  FontAwesomeIcons.user,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
                               ),
-                            ),
+                              SizedBox(width: 18),
+                              Expanded(
+                                child: Text(
+                                  'User ${index + 1}',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF2C5364),
+                                  ),
+                                ),
+                              ),
+                              ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xFF0F2027),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  elevation: 0,
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 8,
+                                  ),
+                                ),
+                                onPressed: () {},
+                                icon: FaIcon(
+                                  FontAwesomeIcons.userPlus,
+                                  size: 16,
+                                  color: Colors.white,
+                                ),
+                                label: Text(
+                                  'Add',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF0F2027),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              elevation: 0,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 8,
-                              ),
-                            ),
-                            onPressed: () {},
-                            icon: FaIcon(
-                              FontAwesomeIcons.userPlus,
-                              size: 16,
-                              color: Colors.white,
-                            ),
-                            label: Text(
-                              'Add',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
           ],
