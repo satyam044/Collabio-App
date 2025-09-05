@@ -12,10 +12,21 @@ class AddFriendsPage extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: FaIcon(FontAwesomeIcons.arrowLeft, size: 20,),
+          icon: FaIcon(FontAwesomeIcons.arrowLeft, size: 20),
         ),
       ),
-      body: Center(child: Text('Friends')),
+      body: Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Search...",
+              prefixIcon: FaIcon(FontAwesomeIcons.search),
+              suffixIcon: FaIcon(FontAwesomeIcons.contactBook),
+              
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

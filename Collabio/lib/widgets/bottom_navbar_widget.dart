@@ -19,30 +19,51 @@ class _BottomNavbarWidgetState extends State<BottomNavbarWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(index: currentIndex, children: pages),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.home),
-            label: "Home",
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          child: BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.home, size: 28),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.compass, size: 28),
+                label: "Explore",
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.phoneVolume, size: 28),
+                label: "Calls",
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.circleUser, size: 28),
+                label: "Profile",
+              ),
+            ],
+            type: BottomNavigationBarType.fixed,
+            currentIndex: currentIndex,
+            selectedItemColor: Color(0xFF2C5364),
+            unselectedItemColor: Colors.grey[400],
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            showUnselectedLabels: true,
+            selectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+            unselectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 13,
+            ),
+            onTap: (index) => setState(() {
+              currentIndex = index;
+            }),
           ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.compass),
-            label: "Explore",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.phone),
-            label: "Calls",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.circleUser),
-            label: "Profile",
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() {
-          currentIndex = index;
-        }),
+        ),
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/pages/add_friends.dart';
 import 'package:frontend/widgets/Uihelper.dart';
-import 'package:frontend/widgets/bottom_navbar_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,15 +9,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: Row(
           children: [
             Uihelper.customImg(img: 'logo.png', height: 30),
             SizedBox(width: 8),
             Uihelper.customTxt(
               text: 'Collabio',
-              fontSize: 20,
-              fontWeight: FontWeight.normal,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ],
@@ -33,111 +35,163 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => AddFriendsPage()),
                 );
               },
-              icon: FaIcon(FontAwesomeIcons.userPlus, size: 20),
+              icon: FaIcon(
+                FontAwesomeIcons.userPlus,
+                size: 22,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Uihelper.customTxt(text: 'Suggestions', fontSize: 20),
-                SizedBox(height: 10),
-                SizedBox(
-                  height: 100,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return SizedBox(
-                        width: 80,
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: Colors.amber,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Uihelper.customImg(
-                                  img: 'logo.png',
-                                  height: 44,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF0F2027), Color(0xFF2C5364)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: kToolbarHeight + 60),
+            Card(
+              color: Colors.white.withOpacity(0.1),
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Uihelper.customTxt(
+                      text: 'Suggestions',
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    SizedBox(height: 12),
+                    SizedBox(
+                      height: 100,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 10,
+                        separatorBuilder: (_, __) => SizedBox(width: 16),
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      blurRadius: 6,
+                                    ),
+                                  ],
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.amber,
+                                      Colors.orangeAccent,
+                                    ],
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Uihelper.customImg(
+                                    img: 'logo.png',
+                                    height: 44,
+                                  ),
                                 ),
                               ),
+                              SizedBox(height: 6),
+                              Text(
+                                'User$index',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 24, top: 18, bottom: 8),
+                      child: Uihelper.customTxt(
+                        text: 'Chats',
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.separated(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        itemCount: 20,
+                        separatorBuilder: (_, __) => SizedBox(height: 8),
+                        itemBuilder: (context, index) {
+                          return Card(color: Colors.white54,
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
                             ),
-                            SizedBox(height: 4),
-                            Text(
-                              'User$index',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                radius: 26,
+                                backgroundImage: AssetImage(
+                                  'assets/images/logo.png',
+                                ),
+                              ),
+                              title: Uihelper.customTxt(
+                                text: "User $index",
+                                fontSize: 17,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black
+                              ),
+                              subtitle: Uihelper.customTxt(
+                                text: "Last Message...",
                                 fontSize: 14,
-                                fontWeight: FontWeight.w500,
+                                color: Colors.grey[700],
+                              ),
+                              trailing: Uihelper.customTxt(
+                                text: "2m ago",
+                                color: Colors.grey,
+                                fontSize: 13,
                               ),
                             ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 20, top: 12),
-                    child: Uihelper.customTxt(
-                      text: 'Chats',
-                      fontSize: 30,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: 20,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: CircleAvatar(
-                            radius: 24,
-                            backgroundImage: AssetImage(
-                              'assets/images/logo.png',
-                            ),
-                          ),
-                          title: Uihelper.customTxt(
-                            text: "User $index",
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          subtitle: Uihelper.customTxt(text: "Last Message..."),
-                          trailing: Uihelper.customTxt(
-                            text: "2m ago",
-                            color: Colors.grey,
-                            fontSize: 12,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
