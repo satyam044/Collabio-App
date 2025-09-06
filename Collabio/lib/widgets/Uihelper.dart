@@ -45,6 +45,27 @@ class Uihelper {
     );
   }
 
+  static profilePageBtn({
+    required Color color,
+    required IconData icon,
+    required String name,
+  }) {
+    return ElevatedButton.icon(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        elevation: 0,
+        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 8),
+      ),
+      onPressed: () {},
+      icon: FaIcon(icon, size: 16, color: Colors.white),
+      label: Text(
+        name,
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
   static ThemeData theme(BuildContext context) {
     return Provider.of<ThemeProvider>(context).themeData;
   }

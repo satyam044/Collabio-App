@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/pages/user_details.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class ChatPage extends StatelessWidget {
@@ -30,30 +31,42 @@ class ChatPage extends StatelessWidget {
               },
             ),
             SizedBox(width: 4),
-            CircleAvatar(
-              radius: 22,
-              backgroundColor: Color(0xFF2C5364),
-              child: FaIcon(
-                FontAwesomeIcons.user,
-                color: Colors.white,
-                size: 30,
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UserDetails(user)),
+                );
+              },
+              child: Row(
                 children: [
-                  Uihelper.customTxt(
-                    text: "User $user",
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                  CircleAvatar(
+                    radius: 22,
+                    backgroundColor: Color(0xFF2C5364),
+                    child: FaIcon(
+                      FontAwesomeIcons.user,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
-                  Uihelper.customTxt(
-                    text: "Active Now",
-                    color: Colors.grey[400],
-                    fontSize: 14,
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Uihelper.customTxt(
+                          text: "User $user",
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                        Uihelper.customTxt(
+                          text: "Active Now",
+                          color: Colors.grey[400],
+                          fontSize: 14,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -78,7 +91,7 @@ class ChatPage extends StatelessWidget {
           Expanded(
             child: ListView.separated(
               padding: EdgeInsets.all(12),
-              itemCount: 20,
+              itemCount: 10,
               separatorBuilder: (_, __) => SizedBox(height: 8),
               itemBuilder: (context, index) {
                 bool isMe = index % 2 == 0;

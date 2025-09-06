@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/pages/chat.dart';
 import 'package:frontend/pages/profile.dart';
+import 'package:frontend/pages/user_details.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,7 +34,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                  MaterialPageRoute(builder: (context) => ProfilePage(true)),
                 );
               },
               icon: FaIcon(
@@ -155,7 +156,12 @@ class HomePage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(index),));
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ChatPage(index),
+                                ),
+                              );
                             },
                             child: Card(
                               color: Colors.white,
@@ -164,13 +170,24 @@ class HomePage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               child: ListTile(
-                                leading: CircleAvatar(
-                                  radius: 24,
-                                  backgroundColor: Color(0xFF2C5364),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.user,
-                                    color: Colors.white,
-                                    size: 24,
+                                leading: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            UserDetails(index),
+                                      ),
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 24,
+                                    backgroundColor: Color(0xFF2C5364),
+                                    child: FaIcon(
+                                      FontAwesomeIcons.user,
+                                      color: Colors.white,
+                                      size: 24,
+                                    ),
                                   ),
                                 ),
                                 title: Uihelper.customTxt(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/auth.dart';
+import 'package:frontend/pages/home.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class SplashPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         (context),
-        MaterialPageRoute(builder: (context) => AuthPage()),
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
     });
   }
@@ -27,11 +28,16 @@ class _SplashPageState extends State<SplashPage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Uihelper.customImg(img: 'logo.png', height: 120),
-          Uihelper.customTxt(text: 'Collabio', fontSize: 32, fontWeight: FontWeight.bold)
-        ],
-      )),
+          children: [
+            Uihelper.customImg(img: 'logo.png', height: 120),
+            Uihelper.customTxt(
+              text: 'Collabio',
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
