@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/pages/chat.dart';
 import 'package:frontend/pages/profile.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
@@ -152,37 +153,42 @@ class HomePage extends StatelessWidget {
                         itemCount: 20,
                         separatorBuilder: (_, __) => SizedBox(height: 0),
                         itemBuilder: (context, index) {
-                          return Card(
-                            color: Colors.white,
-                            elevation: 1,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0),
-                            ),
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                radius: 24,
-                                backgroundColor: Color(0xFF2C5364),
-                                child: FaIcon(
-                                  FontAwesomeIcons.user,
-                                  color: Colors.white,
-                                  size: 24,
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(index),));
+                            },
+                            child: Card(
+                              color: Colors.white,
+                              elevation: 1,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0),
+                              ),
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  radius: 24,
+                                  backgroundColor: Color(0xFF2C5364),
+                                  child: FaIcon(
+                                    FontAwesomeIcons.user,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
                                 ),
-                              ),
-                              title: Uihelper.customTxt(
-                                text: "User $index",
-                                fontSize: 17,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black,
-                              ),
-                              subtitle: Uihelper.customTxt(
-                                text: "Last Message...",
-                                fontSize: 14,
-                                color: Colors.grey[700],
-                              ),
-                              trailing: Uihelper.customTxt(
-                                text: "2m ago",
-                                color: Colors.grey,
-                                fontSize: 13,
+                                title: Uihelper.customTxt(
+                                  text: "User $index",
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black,
+                                ),
+                                subtitle: Uihelper.customTxt(
+                                  text: "Last Message...",
+                                  fontSize: 14,
+                                  color: Colors.grey[700],
+                                ),
+                                trailing: Uihelper.customTxt(
+                                  text: "2m ago",
+                                  color: Colors.grey,
+                                  fontSize: 13,
+                                ),
                               ),
                             ),
                           );
