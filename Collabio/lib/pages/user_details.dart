@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/pages/chat.dart';
+import 'package:frontend/pages/profile.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class UserDetails extends StatelessWidget {
@@ -84,11 +85,61 @@ class UserDetails extends StatelessWidget {
                 },
               ),
               const SizedBox(width: 20),
-              Uihelper.profileIcons(icon: FontAwesomeIcons.phoneVolume),
+              Uihelper.profileIcons(
+                icon: FontAwesomeIcons.phoneVolume,
+                onPressed: () {},
+              ),
               const SizedBox(width: 20),
-              Uihelper.profileIcons(icon: FontAwesomeIcons.video),
+              Uihelper.profileIcons(
+                icon: FontAwesomeIcons.video,
+                onPressed: () {},
+              ),
               const SizedBox(width: 20),
-              Uihelper.profileIcons(icon: FontAwesomeIcons.ellipsisVertical),
+              PopupMenuButton<String>(
+                icon: CircleAvatar(
+                  radius: 28,
+                  backgroundColor: Color(0xFF2C5364),
+                  child: FaIcon(
+                    FontAwesomeIcons.ellipsisVertical,
+                    size: 24,
+                    color: Colors.white,
+                  ),
+                ),
+                onSelected: (String choice) {
+                  if (choice == 'unfollow') {
+                    print('Unfollow clicked');
+                  } else if (choice == 'view_profile') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfilePage(false, user: user),
+                      ),
+                    );
+                  }
+                },
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                  PopupMenuItem<String>(
+                    value: 'unfollow',
+                    child: Row(
+                      children: const [
+                        FaIcon(FontAwesomeIcons.userMinus, size: 16),
+                        SizedBox(width: 10),
+                        Text("Unfollow"),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'view_profile',
+                    child: Row(
+                      children: const [
+                        FaIcon(FontAwesomeIcons.idBadge, size: 16),
+                        SizedBox(width: 10),
+                        Text("View Profile"),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           const SizedBox(height: 20),

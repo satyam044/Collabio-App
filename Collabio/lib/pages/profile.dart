@@ -4,7 +4,8 @@ import 'package:frontend/widgets/Uihelper.dart';
 
 class ProfilePage extends StatelessWidget {
   final bool? isMe;
-  ProfilePage(this.isMe);
+  final int? user;
+  ProfilePage(this.isMe, {this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -79,12 +80,12 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               children: [
                 Uihelper.customTxt(
-                  text: "John Abraham",
+                  text: isMe! ? "John Abraham" : "User $user",
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
                 ),
                 Uihelper.customTxt(
-                  text: "@johnabraham",
+                  text: isMe! ? "@johnabraham" : "@user$user",
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
                   color: Colors.grey[600],

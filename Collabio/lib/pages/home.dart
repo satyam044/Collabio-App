@@ -176,7 +176,7 @@ class HomePage extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            UserDetails(index),
+                                            ProfilePage(false, user: index),
                                       ),
                                     );
                                   },
