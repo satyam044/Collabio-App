@@ -83,7 +83,9 @@ class ChatPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 bool isMe = index % 2 == 0;
                 return Align(
-                  alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+                  alignment: isMe
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Container(
                     decoration: BoxDecoration(
                       color: isMe ? Colors.blue[100] : Colors.grey[200],
@@ -105,6 +107,14 @@ class ChatPage extends StatelessWidget {
             color: Colors.white,
             child: Row(
               children: [
+                IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.paperclip,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+                  onPressed: () {},
+                ),
                 Expanded(
                   child: TextField(
                     controller: _messageController,
@@ -123,24 +133,26 @@ class ChatPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 8),
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: Colors.blue,
-                  child: IconButton(
-                    icon: FaIcon(FontAwesomeIcons.chevronRight, color: Colors.white),
-                    onPressed: () {
-                      String message = _messageController.text.trim();
-                      if (message.isNotEmpty) {
-                        print("Sending: $message");
-                        _messageController.clear();
-                      }
-                    },
+                SizedBox(width: 4),
+                IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.camera,
+                    color: Colors.black,
+                    size: 30,
                   ),
-                )
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.microphone,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+                  onPressed: () {},
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
