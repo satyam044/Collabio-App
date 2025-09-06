@@ -50,23 +50,21 @@ class ChatPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Uihelper.customTxt(
-                          text: "User $user",
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                        Uihelper.customTxt(
-                          text: "Active Now",
-                          color: Colors.grey[400],
-                          fontSize: 14,
-                        ),
-                      ],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Uihelper.customTxt(
+                        text: "User $user",
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                      Uihelper.customTxt(
+                        text: "Active Now",
+                        color: Colors.grey[400],
+                        fontSize: 14,
+                      ),
+                    ],
                   ),
                 ],
               ),

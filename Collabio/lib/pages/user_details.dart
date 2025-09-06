@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/pages/chat.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class UserDetails extends StatelessWidget {
@@ -73,7 +74,15 @@ class UserDetails extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Uihelper.profileIcons(icon: FontAwesomeIcons.message),
+              Uihelper.profileIcons(
+                icon: FontAwesomeIcons.message,
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChatPage(user)),
+                  );
+                },
+              ),
               const SizedBox(width: 20),
               Uihelper.profileIcons(icon: FontAwesomeIcons.phoneVolume),
               const SizedBox(width: 20),

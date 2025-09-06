@@ -34,12 +34,14 @@ class Uihelper {
     );
   }
 
-  static profileIcons({required IconData icon}) {
+  static profileIcons({required IconData icon, Function? onPressed}) {
     return CircleAvatar(
       radius: 28,
       backgroundColor: Color(0xFF2C5364),
       child: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          if (onPressed != null) onPressed();
+        },
         icon: FaIcon(icon, size: 24, color: Colors.white),
       ),
     );
