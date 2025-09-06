@@ -88,7 +88,7 @@ class AuthPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.lightGreen,
                 padding: EdgeInsets.symmetric(vertical: 16),
                 elevation: 5,
               ),

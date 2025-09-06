@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(height: kToolbarHeight + 60),
+            SizedBox(height: kToolbarHeight + 50),
             Card(
               color: Colors.white.withOpacity(0.1),
               elevation: 4,
@@ -141,7 +141,7 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.only(left: 24, top: 18, bottom: 8),
                       child: Uihelper.customTxt(
                         text: 'Chats',
-                        fontSize: 28,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),

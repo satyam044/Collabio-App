@@ -72,7 +72,7 @@ class AddFriendsPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsetsGeometry.all(8),
+              padding: EdgeInsetsGeometry.all(10),
               child: Uihelper.customTxt(text: "Add Friends", fontSize: 22),
             ),
             Expanded(
@@ -113,7 +113,7 @@ class AddFriendsPage extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xFF2C5364),
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -136,7 +136,7 @@ class AddFriendsPage extends StatelessWidget {
                                   color: Colors.white,
                                 ),
                                 label: Text(
-                                  'Add',
+                                  'Follow',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
