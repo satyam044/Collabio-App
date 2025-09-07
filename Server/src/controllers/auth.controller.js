@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const { cloudinary } = require("../services/cloudinary.js");
 const { setUser } = require("../services/auth.js");
 
-export async function registerUser(req, res) {
+async function registerUser(req, res) {
     try {
         const { email, password, profilePic, name, userName, bio } = req.body;
         const user = await User.findOne({ email });
@@ -52,7 +52,7 @@ export async function registerUser(req, res) {
     }
 }
 
-export async function loginUser(req, res) {
+async function loginUser(req, res) {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
@@ -90,7 +90,28 @@ export async function loginUser(req, res) {
     }
 }
 
-export async function logoutUser(req, res) {
+async function updateProfile(req, res) {
+    try {
+        const { profilePic, name, userName, bio } = req.body;
+        const userId = req.user._id;
+        let updatedUser;
+
+        if (!profilePic) {
+            updatedUser = await User.findByIdAndUpdate(userId, { name, userName, bio }, { new: true });
+        } else {
+            const upload = await cloudinary.uploader.upload(profilePic);
+            updatedUser = await User.findByIdAndUpdate(userId, { profilePic: upload.secure_url, name, userName, bio }, { new: true });
+        }
+        res.status(200).json({
+            success: true,
+            userData: updatedUser,
+        });
+    } catch (err) {
+        res.json({ success: false, message: "Something went wrong" });
+    }
+}
+
+async function logoutUser(req, res) {
     try {
         res.clearCookie("token");
         res.status(200).json({
@@ -100,4 +121,11 @@ export async function logoutUser(req, res) {
     } catch (err) {
         res.json({ success: false, message: "Something went wrong" });
     }
+}
+
+module.exports = {
+    registerUser,
+    loginUser,
+    updateProfile,
+    logoutUser
 }
