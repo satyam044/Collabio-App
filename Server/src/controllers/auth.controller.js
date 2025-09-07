@@ -1,31 +1,103 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
 const { cloudinary } = require("../services/cloudinary.js");
+const { setUser } = require("../services/auth.js");
 
-async function registerUser(req, res) {
-    const { email, password, profilePic, name, userName, bio } = req.body;
-    const user = await User.findOne({ email });
+export async function registerUser(req, res) {
+    try {
+        const { email, password, profilePic, name, userName, bio } = req.body;
+        const user = await User.findOne({ email });
 
-    if (user) {
-        return res.status(400).json({ success: false, message: "User Already Exists" });
+        if (user) {
+            return res.status(400).json({ success: false, message: "User Already Exists" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        let profilePicUrl = "";
+        if (profilePic) {
+            const upload = await cloudinary.uploader.upload(profilePic);
+            profilePicUrl = upload.secure_url;
+        }
+
+        const newUser = await User.create({
+            email,
+            password: hashedPassword,
+            profilePic: profilePicUrl,
+            name,
+            userName,
+            bio,
+        })
+
+        const token = setUser(newUser._id);
+        res.cookie("token", token);
+
+        res.status(201).json({
+            success: true,
+            userData: {
+                id: newUser._id,
+                profilePic: profilePicUrl,
+                name: newUser.name,
+                userName: newUser.userName,
+                bio: newUser.bio,
+            },
+            token,
+            message: "Account Created Successfully"
+        })
+    } catch (err) {
+        res.json({
+            success: false,
+            message: "Something went wrong!",
+        });
     }
+}
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+export async function loginUser(req, res) {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid Email or Password",
+            });
+        }
 
-    let profilePicUrl = "";
-    if (profilePic) {
-        const upload = await cloudinary.uploader.upload(profilePic);
-        profilePic = upload.secure_url;
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        if (!isPasswordCorrect) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid Email or Password",
+            });
+        }
+
+        const token = setUser(user._id);
+        res.cookie("token", token);
+        res.status(200).json({
+            success: true,
+            userData: {
+                id: user._id,
+                profilePic: user.profilePic,
+                name: user.name,
+                userName: user.userName,
+                bio: user.bio,
+            },
+            token,
+            message: "Login Successfully"
+        })
+    } catch (err) {
+        res.json({ success: false, message: "Something went wrong" });
     }
+}
 
-    const newUser = await User.create({
-        email,
-        password: hashedPassword,
-        profilePic: profilePicUrl,
-        name,
-        userName,
-        bio,
-    })
-
-
+export async function logoutUser(req, res) {
+    try {
+        res.clearCookie("token");
+        res.status(200).json({
+            success: true,
+            message: "User Logged Out Successfully"
+        })
+    } catch (err) {
+        res.json({ success: false, message: "Something went wrong" });
+    }
 }
