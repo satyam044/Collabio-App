@@ -5,20 +5,18 @@ import 'package:http/http.dart' as http;
 class ApiService {
   static final String baseUrl = dotenv.env['API_BASE_URL'] ?? "";
 
-  /// Fetch all users (GET /api/auth/user/users)
   static Future<Map<String, dynamic>> getUsers(String token) async {
     final response = await http.get(
       Uri.parse("$baseUrl/api/auth/user/users"),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer $token", // protectRoute needs token
+        "Authorization": "Bearer $token",
       },
     );
 
     return jsonDecode(response.body);
   }
 
-  /// Register user (POST /api/auth/user/register)
   static Future<Map<String, dynamic>> registerUser({
     required String email,
     required String password,
@@ -43,7 +41,6 @@ class ApiService {
     return jsonDecode(response.body);
   }
 
-  /// Login user (POST /api/auth/user/login)
   static Future<Map<String, dynamic>> loginUser({
     required String email,
     required String password,

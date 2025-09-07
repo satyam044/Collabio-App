@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/pages/signup.dart';
 import 'package:frontend/widgets/Uihelper.dart';
-import 'package:frontend/widgets/bottom_navbar_widget.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
-  void _onEmailSignUpPressed(BuildContext context) async {}
-
-  void _onPhoneSignUpPressed(BuildContext context) {
-    Navigator.pushReplacement(
+  void _onEmailSignUpPressed(BuildContext context) async {
+    Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => BottomNavbarWidget()),
+      MaterialPageRoute(builder: (context) => SignUpPage()),
     );
   }
+
+  // void _onPhoneSignUpPressed(BuildContext context) {
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => BottomNavbarWidget()),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

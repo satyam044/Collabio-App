@@ -10,16 +10,14 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   List users = [];
-  String? token; // store auth token after login
+  String? token;
 
   @override
   void initState() {
     super.initState();
-    // example: auto login -> then fetch users
     loginAndFetchUsers();
   }
 
-  /// Example login + fetch users
   void loginAndFetchUsers() async {
     final res = await ApiService.loginUser(
       email: "test@gmail.com",
@@ -61,7 +59,6 @@ class _UserScreenState extends State<UserScreen> {
     showSnackBar(res["message"]);
 
     if (res["success"]) {
-      // optional: auto-login newly registered user
       loginAndFetchUsers();
     }
   }
