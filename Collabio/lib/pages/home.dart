@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/pages/chat.dart';
 import 'package:frontend/pages/profile.dart';
-import 'package:frontend/pages/user_details.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class HomePage extends StatelessWidget {
