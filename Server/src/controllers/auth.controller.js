@@ -3,6 +3,15 @@ const bcrypt = require("bcryptjs");
 const { cloudinary } = require("../services/cloudinary.js");
 const { setUser } = require("../services/auth.js");
 
+async function getUsers(req, res) {
+    try {
+        const users = await User.find();
+        res.status(200).json({ success: true, message: "Users fetched successfully", users });
+    } catch (err) {
+        res.status(500).json({ success: false, message: "Failed to fetch users", error: err.message });
+    }
+}
+
 async function registerUser(req, res) {
     try {
         const { email, password, profilePic, name, userName, bio } = req.body;
@@ -124,6 +133,7 @@ async function logoutUser(req, res) {
 }
 
 module.exports = {
+    getUsers,
     registerUser,
     loginUser,
     updateProfile,
