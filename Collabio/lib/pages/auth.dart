@@ -6,7 +6,9 @@ import 'package:frontend/widgets/bottom_navbar_widget.dart';
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
-  static _onPhoneSignUpPressed(BuildContext context) {
+  void _onEmailSignUpPressed(BuildContext context) async {}
+
+  void _onPhoneSignUpPressed(BuildContext context) {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => BottomNavbarWidget()),
@@ -16,36 +18,8 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => BottomNavbarWidget()),
-                );
-              },
-              icon: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Uihelper.customTxt(
-                    text: 'Skip',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.grey,
-                  ),
-                  SizedBox(width: 8),
-                  FaIcon(FontAwesomeIcons.arrowRight, color: Colors.grey, size: 14,),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 60),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -82,33 +56,71 @@ class AuthPage extends StatelessWidget {
                 ),
               ],
             ),
-            ElevatedButton(
-              onPressed: () => _onPhoneSignUpPressed(context),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Column(
+              children: [
+                CustomAuthBtn.emailBtn(
+                  onPressed: () => _onEmailSignUpPressed(context),
                 ),
-                backgroundColor: Colors.lightGreen,
-                padding: EdgeInsets.symmetric(vertical: 16),
-                elevation: 5,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.phone,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                  SizedBox(width: 10),
-                  Uihelper.customTxt(
-                    text: 'Sign Up with Phone',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
-                  ),
-                ],
-              ),
+                SizedBox(height: 12),
+                // CustomAuthBtn.phoneBtn(
+                //   onPressed: () => _onPhoneSignUpPressed(context),
+                // ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomAuthBtn {
+  static Widget emailBtn({required VoidCallback onPressed}) {
+    return _buildAuthBtn(
+      icon: FontAwesomeIcons.envelope,
+      text: 'Sign Up with Email',
+      backgroundColor: Colors.red,
+      onPressed: onPressed,
+    );
+  }
+
+  static Widget phoneBtn({required VoidCallback onPressed}) {
+    return _buildAuthBtn(
+      icon: FontAwesomeIcons.phone,
+      text: 'Sign Up with Phone',
+      backgroundColor: Colors.green,
+      onPressed: onPressed,
+    );
+  }
+
+  static Widget _buildAuthBtn({
+    required IconData icon,
+    required String text,
+    required Color backgroundColor,
+    required VoidCallback onPressed,
+  }) {
+    return Container(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          backgroundColor: backgroundColor,
+          padding: EdgeInsets.symmetric(vertical: 16),
+          elevation: 5,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FaIcon(icon, color: Colors.white, size: 30),
+            SizedBox(width: 10),
+            Uihelper.customTxt(
+              text: text,
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+              color: Colors.white,
             ),
           ],
         ),

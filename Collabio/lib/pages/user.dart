@@ -53,8 +53,8 @@ class _UserScreenState extends State<UserScreen> {
     final res = await ApiService.registerUser(
       email: "newuser@gmail.com",
       password: "123456",
-      name: "Satyam",
-      userName: "satyam044",
+      name: "user",
+      userName: "user0",
       bio: "Flutter + Node.js dev",
     );
 
