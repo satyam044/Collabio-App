@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/pages/login.dart';
 import 'package:frontend/pages/signup.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
@@ -70,6 +71,28 @@ class AuthPage extends StatelessWidget {
                 // CustomAuthBtn.phoneBtn(
                 //   onPressed: () => _onPhoneSignUpPressed(context),
                 // ),
+                // SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account?",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      child: Text(
+                        "Login",
+                        style: TextStyle(color: Colors.blueAccent),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],

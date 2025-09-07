@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:frontend/pages/login.dart';
+import 'package:frontend/pages/signup.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  final TextEditingController _nameController = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-
-  String _profilePicUrl = '';
 
   @override
   Widget build(BuildContext context) {
@@ -60,61 +54,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ),
                 SizedBox(height: 40),
-                Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      // Handle picking profile picture (use ImagePicker or similar)
-                    },
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.grey[300],
-                      backgroundImage: _profilePicUrl.isEmpty
-                          ? Uihelper.customImg(img: "avatar.webp")
-                          : NetworkImage(_profilePicUrl) as ImageProvider,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    hintText: "Enter Full Name",
-                    hintStyle: TextStyle(color: Colors.grey[400]),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 15,
-                      horizontal: 12,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
                 TextField(
                   controller: _usernameController,
                   decoration: InputDecoration(
                     hintText: "Enter Username",
-                    hintStyle: TextStyle(color: Colors.grey[400]),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 15,
-                      horizontal: 12,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    hintText: "Enter Email Address",
                     hintStyle: TextStyle(color: Colors.grey[400]),
                     filled: true,
                     fillColor: Colors.white,
@@ -147,41 +90,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: _confirmPasswordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: "Confirm Password",
-                    hintStyle: TextStyle(color: Colors.grey[400]),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 15,
-                      horizontal: 12,
-                    ),
-                  ),
-                ),
                 SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () {
-                    if (_passwordController.text ==
-                        _confirmPasswordController.text) {
-                      // Handle sign-up action
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(SnackBar(content: Text('Signing up...')));
-                    } else {
-                      // Show error if passwords don't match
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Passwords do not match!')),
-                      );
-                    }
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     padding: EdgeInsets.symmetric(vertical: 15),
@@ -193,25 +104,25 @@ class _SignUpPageState extends State<SignUpPage> {
                       fontSize: 16,
                     ),
                   ),
-                  child: Center(child: Text('Sign Up')),
+                  child: Center(child: Text('Log In')),
                 ),
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Already have an account?",
+                      "Don't have an account?",
                       style: TextStyle(color: Colors.white),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
                         );
                       },
                       child: Text(
-                        "Login",
+                        "Signup",
                         style: TextStyle(color: Colors.blueAccent),
                       ),
                     ),
