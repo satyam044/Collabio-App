@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/pages/login.dart';
+import 'package:frontend/service/api_service.dart';
 import 'package:frontend/widgets/Uihelper.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -69,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       radius: 50,
                       backgroundColor: Colors.grey[300],
                       backgroundImage: _profilePicUrl.isEmpty
-                          ? Uihelper.customImg(img: "avatar.webp")
+                          ? Image.asset('assets/images/avatar.webp').image
                           : NetworkImage(_profilePicUrl) as ImageProvider,
                     ),
                   ),
@@ -168,15 +169,47 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_passwordController.text ==
                         _confirmPasswordController.text) {
-                      // Handle sign-up action
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(SnackBar(content: Text('Signing up...')));
+                      try {
+                        final response = await ApiService.registerUser(
+                          email: _emailController.text.trim(),
+                          password: _passwordController.text.trim(),
+                          name: _nameController.text.trim(),
+                          userName: _usernameController.text.trim(),
+                          profilePic: _profilePicUrl,
+                        );
+
+                        if (response['success'] == true) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Registration successful! Please login.',
+                              ),
+                            ),
+                          );
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage(),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                response['message'] ?? 'Something went wrong',
+                              ),
+                            ),
+                          );
+                        }
+                      } catch (e) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text('Error: $e')));
+                      }
                     } else {
-                      // Show error if passwords don't match
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Passwords do not match!')),
                       );
@@ -187,10 +220,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
-                    ),
-                    textStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
                     ),
                   ),
                   child: Center(child: Text('Sign Up')),
